@@ -87,7 +87,7 @@ class RadosIO{
 	}
 	
 	public function getXattrs($oid){
-		return rados_getxattr($this->_ioctx, $oid);
+		return rados_getxattrs($this->_ioctx, $oid);
 	}
 		
 	public function objectsList(){
