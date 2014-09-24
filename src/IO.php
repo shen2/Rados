@@ -1,5 +1,7 @@
 <?php
-class RadosIO{
+namespace Rados;
+
+class IO{
 
 	protected $_ioctx;
 

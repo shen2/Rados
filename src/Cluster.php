@@ -1,5 +1,7 @@
 <?php
-class Rados{
+namespace Rados;
+
+class Cluster{
 	
 	protected $_cluster;
 	
@@ -10,30 +12,47 @@ class Rados{
 	/**
 	 * create IOctx Object
 	 * @param string $poolName
-	 * @return RadosIO
+	 * @return IO
 	 */
 	public function createIO($poolName){
-		return new RadosIO($this->_cluster, $poolName);
+		return new IO($this->_cluster, $poolName);
 	}
 	
+	/**
+	 * 
+	 * @param string $fileName
+	 * @return self
+	 */
 	public function readConfig($fileName){
 		rados_conf_read_file($this->_cluster, $fileName);
 		
 		return $this;
 	}
 	
+	/**
+	 * 
+	 * @return self
+	 */
 	public function connect(){
 		rados_connect($this->_cluster);
 		
 		return $this;
 	}
 	
+	/**
+	 * 
+	 * @return self
+	 */
 	public function shutdown(){
 		rados_shutdown($this->_cluster);
 		
 		return $this;
 	}
 	
+	/**
+	 * 
+	 * @param string $poolName
+	 */
 	public function createPool($poolName){
 		return rados_pool_create($this->_cluster, $poolName);
 	}
