@@ -6,7 +6,7 @@ class Cluster{
 	protected $_cluster;
 	
 	public function __construct(){
-		$this->_cluster = rados_create();
+		$this->_cluster = \rados_create();
 	}
 	
 	/**
@@ -24,7 +24,7 @@ class Cluster{
 	 * @return self
 	 */
 	public function readConfig($fileName){
-		rados_conf_read_file($this->_cluster, $fileName);
+		\rados_conf_read_file($this->_cluster, $fileName);
 		
 		return $this;
 	}
@@ -34,7 +34,7 @@ class Cluster{
 	 * @return self
 	 */
 	public function connect(){
-		rados_connect($this->_cluster);
+		\rados_connect($this->_cluster);
 		
 		return $this;
 	}
@@ -44,7 +44,7 @@ class Cluster{
 	 * @return self
 	 */
 	public function shutdown(){
-		rados_shutdown($this->_cluster);
+		\rados_shutdown($this->_cluster);
 		
 		return $this;
 	}
@@ -54,10 +54,10 @@ class Cluster{
 	 * @param string $poolName
 	 */
 	public function createPool($poolName){
-		return rados_pool_create($this->_cluster, $poolName);
+		return \rados_pool_create($this->_cluster, $poolName);
 	}
 	
 	public function poolList(){
-		return rados_pool_list($this->_cluster);
+		return \rados_pool_list($this->_cluster);
 	}
 }
